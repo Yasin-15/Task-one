@@ -3,11 +3,9 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     
     permissions:
@@ -15,12 +13,18 @@ jobs:
       pages: write
       id-token: write
     
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
     steps:
     - name: Checkout
       uses: actions/checkout@v4
       
     - name: Setup Pages
       uses: actions/configure-pages@v4
+      with:
+        enablement: true
       
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
@@ -31,5 +35,9 @@ jobs:
       id: deployment
       uses: actions/deploy-pages@v4
 
-# Note: This workflow requires GitHub Pages to be configured
-# and the repository to have Pages deployment permissions
+# Instructions for setup:
+# 1. Go to your repository Settings
+# 2. Navigate to Pages section
+# 3. Under "Source", select "GitHub Actions"
+# 4. Save the settings
+# 5. Push this workflow to trigger deployment
