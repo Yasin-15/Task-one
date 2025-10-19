@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Hami MiniMarket - Fresh, Local, Trusted fruits and vegetables from HamiSkills community shop">
+    <title>Hami MiniMarket - Fresh. Local. Trusted.</title>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/styles.css" as="style">
+    <link rel="preload" href="images/logo.jpg" as="image">
+    <link rel="preload" href="images/hero-banner.jpg" as="image">
+    <link rel="preload" href="js/main.js" as="script">
+
+    <!-- DNS prefetch for external resources (if any) -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+
+    <!-- Optimize resource loading -->
+    <meta name="theme-color" content="#2E7D32">
+    <meta name="color-scheme" content="light">
+
+    <!-- Performance hints -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header Section -->
+    <header class="header" id="header">
+        <div class="header__container">
+            <div class="header__logo">
+                <img src="images/logo.jpg" alt="Hami MiniMarket Logo" class="header__logo-img" width="40" height="40"
+                    loading="eager">Hami Mini Market
+            </div>
+            <nav class="header__nav">
+                <ul class="header__nav-list">
+                    <li class="header__nav-item">
+                        <a href="#home" class="header__nav-link">Home</a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a href="#products" class="header__nav-link">Products</a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a href="#about" class="header__nav-link">About</a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a href="#contact" class="header__nav-link">Contact</a>
+                    </li>
+                </ul>
+                <button class="header__menu-toggle" aria-label="Toggle navigation menu">
+                    <span class="header__menu-icon"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content"></main>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero__container">
+            <div class="hero__content">
+                <h1 class="hero__tagline">Fresh. Local. Trusted.</h1>
+                <p class="hero__description">Discover the finest fruits and vegetables from our community market</p>
+                <a href="#products" class="hero__cta">Explore Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase Section -->
+    <section class="products" id="products" aria-labelledby="products-title">
+        <div class="products__container">
+            <h2 class="products__title" id="products-title">Our Fresh Products</h2>
+            <div class="products__grid">
+                <article class="product-card animate-on-scroll" tabindex="0" role="button"
+                    aria-label="Fresh Red Apples product details"></article>
+                <div class="product-card__image-container">
+                    <img data-src="images/products/apples.jpg"
+                        alt="Fresh Red Apples - Crisp and sweet locally-grown apples, perfect for snacking or baking"
+                        class="product-card__image lazy-load" width="280" height="200" loading="lazy">
+                </div>
+                <div class="product-card__info">
+                    <h3 class="product-card__name">Fresh Red Apples</h3>
+                    <p class="product-card__description">Crisp and sweet locally-grown apples, perfect for snacking or
+                        baking.</p>
+                </div>
+                </article>
+
+                <article class="product-card animate-on-scroll" tabindex="0" role="button"
+                    aria-label="Organic Bananas product details"></article>
+                <div class="product-card__image-container">
+                    <img data-src="images/products/bananas.jpg"
+                        alt="Organic Bananas - Naturally ripened organic bananas, rich in potassium and perfect for smoothies"
+                        class="product-card__image lazy-load" width="280" height="200" loading="lazy">
+                </div>
+                <div class="product-card__info">
+                    <h3 class="product-card__name">Organic Bananas</h3>
+                    <p class="product-card__description">Naturally ripened organic bananas, rich in potassium and
+                        perfect for smoothies.</p>
+                </div>
+                </article>
+
+                <article class="product-card animate-on-scroll" tabindex="0" role="button"
+                    aria-label="Fresh Carrots product details"></article>
+                <div class="product-card__image-container">
+                    <img data-src="images/products/carrots.jpg"
+                        alt="Fresh Carrots - Crunchy orange carrots packed with vitamins, great for cooking or raw snacking"
+                        class="product-card__image lazy-load" width="280" height="200" loading="lazy">
+                </div>
+                <div class="product-card__info">
+                    <h3 class="product-card__name">Fresh Carrots</h3>
+                    <p class="product-card__description">Crunchy orange carrots packed with vitamins, great for cooking
+                        or raw snacking.</p>
+                </div>
+                </article>
+
+                <article class="product-card animate-on-scroll" tabindex="0" role="button"
+                    aria-label="Vine Tomatoes product details"></article>
+                <div class="product-card__image-container">
+                    <img data-src="images/products/tomatoes.jpg"
+                        alt="Vine Tomatoes - Juicy vine-ripened tomatoes with exceptional flavor for salads and cooking"
+                        class="product-card__image lazy-load" width="280" height="200" loading="lazy">
+                </div>
+                <div class="product-card__info">
+                    <h3 class="product-card__name">Vine Tomatoes</h3>
+                    <p class="product-card__description">Juicy vine-ripened tomatoes with exceptional flavor for salads
+                        and cooking.</p>
+                </div>
+                </article>
+
+                <article class="product-card animate-on-scroll" tabindex="0" role="button"
+                    aria-label="Fresh Lettuce product details"></article>
+                <div class="product-card__image-container">
+                    <img data-src="images/products/lettuce.jpg"
+                        alt="Fresh Lettuce - Crisp green lettuce leaves, perfect for fresh salads and healthy meals"
+                        class="product-card__image lazy-load" width="280" height="200" loading="lazy">
+                </div>
+                <div class="product-card__info">
+                    <h3 class="product-card__name">Fresh Lettuce</h3>
+                    <p class="product-card__description">Crisp green lettuce leaves, perfect for fresh salads and
+                        healthy meals.</p>
+                </div>
+                </article>
+
+                <article class="product-card animate-on-scroll" tabindex="0" role="button"
+                    aria-label="Sweet Oranges product details"></article>
+                <div class="product-card__image-container">
+                    <img data-src="images/products/oranges.jpg"
+                        alt="Sweet Oranges - Juicy sweet oranges bursting with vitamin C and natural citrus flavor"
+                        class="product-card__image lazy-load" width="280" height="200" loading="lazy">
+                </div>
+                <div class="product-card__info">
+                    <h3 class="product-card__name">Sweet Oranges</h3>
+                    <p class="product-card__description">Juicy sweet oranges bursting with vitamin C and natural citrus
+                        flavor.</p>
+                </div>
+                </article>
+
+                <article class="product-card animate-on-scroll" tabindex="0" role="button"
+                    aria-label="Fresh Broccoli product details"></article>
+                <div class="product-card__image-container">
+                    <img data-src="images/products/broccoli.jpg"
+                        alt="Fresh Broccoli - Nutritious green broccoli florets, excellent source of vitamins and minerals"
+                        class="product-card__image lazy-load" width="280" height="200" loading="lazy">
+                </div>
+                <div class="product-card__info">
+                    <h3 class="product-card__name">Fresh Broccoli</h3>
+                    <p class="product-card__description">Nutritious green broccoli florets, excellent source of vitamins
+                        and minerals.</p>
+                </div>
+                </article>
+
+                <article class="product-card animate-on-scroll" tabindex="0" role="button"
+                    aria-label="Sweet Strawberries product details"></article>
+                <div class="product-card__image-container">
+                    <img data-src="images/products/strawberries.jpg"
+                        alt="Sweet Strawberries - Fresh, sweet strawberries perfect for desserts, smoothies, or eating fresh"
+                        class="product-card__image lazy-load" width="280" height="200" loading="lazy">
+                </div>
+                <div class="product-card__info">
+                    <h3 class="product-card__name">Sweet Strawberries</h3>
+                    <p class="product-card__description">Fresh, sweet strawberries perfect for desserts, smoothies, or
+                        eating fresh.</p>
+                </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about" aria-labelledby="about-title">
+        <div class="about__container">
+            <div class="about__content">
+                <div class="about__text animate-on-scroll">
+                    <h2 class="about__title" id="about-title">About Hami MiniMarket</h2>
+                    <div class="about__intro">
+                        <p class="about__description">
+                            Welcome to Hami MiniMarket, where <strong>fresh</strong>, <strong>local</strong>, and
+                            <strong>trusted</strong>
+                            aren't just words – they're our promise to you and our community.
+                        </p>
+                    </div>
+
+                    <div class="about__values">
+                        <div class="about__value-item">
+                            <h3 class="about__value-title">Fresh</h3>
+                            <p class="about__value-description">
+                                We source our produce daily from local farms, ensuring you get the freshest fruits and
+                                vegetables
+                                at peak ripeness and flavor.
+                            </p>
+                        </div>
+
+                        <div class="about__value-item">
+                            <h3 class="about__value-title">Local</h3>
+                            <p class="about__value-description">
+                                By partnering with nearby farmers and growers, we support our local economy while
+                                reducing
+                                our environmental footprint and bringing you seasonal produce.
+                            </p>
+                        </div>
+
+                        <div class="about__value-item">
+                            <h3 class="about__value-title">Trusted</h3>
+                            <p class="about__value-description">
+                                Our commitment to quality and transparency has made us a cornerstone of the community.
+                                We know our suppliers personally and stand behind every product we sell.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="about__mission">
+                        <p class="about__mission-text">
+                            At Hami MiniMarket, we believe that good food brings people together. Our mission is to
+                            nourish
+                            our community with the finest produce while supporting sustainable farming practices and
+                            local businesses.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="about__image animate-on-scroll">
+                    <div class="about__image-slider" id="aboutSlider" role="region"
+                        aria-label="Image carousel showing Hami MiniMarket products and atmosphere"></div>
+                    <div class="about__slide active" id="slide-0" role="tabpanel" aria-labelledby="indicator-0">
+                        <div class="about__image-wrapper">
+                            <img src="images/hero-banner.jpg"
+                                alt="Fresh produce display at Hami MiniMarket showcasing our commitment to quality and freshness"
+                                class="about__img" width="400" height="300" loading="lazy">
+                            <div class="about__image-overlay">
+                                <div class="about__image-badge">
+                                    <span class="about__badge-text">Fresh • Local • Trusted</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about__slide" id="slide-1" role="tabpanel" aria-labelledby="indicator-1">
+                        <div class="about__image-wrapper">
+                            <img src="images/products/apples.jpg"
+                                alt="Fresh local produce selection featuring crisp apples representing our local sourcing commitment"
+                                class="about__img" width="400" height="300" loading="lazy">
+                            <div class="about__image-overlay">
+                                <div class="about__image-badge">
+                                    <span class="about__badge-text">Quality Selection</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about__slide" id="slide-2" role="tabpanel" aria-labelledby="indicator-2">
+                        <div class="about__image-wrapper">
+                            <img src="images/products/tomatoes.jpg"
+                                alt="Community market atmosphere with fresh vine tomatoes representing our trusted quality"
+                                class="about__img" width="400" height="300" loading="lazy">
+                            <div class="about__image-overlay">
+                                <div class="about__image-badge">
+                                    <span class="about__badge-text">Community Focus</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slider Controls -->
+                    <button class="slider-btn slider-btn--prev" aria-label="Previous image">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button class="slider-btn slider-btn--next" aria-label="Next image">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <!-- Slider Indicators -->
+                    <div class="slider-indicators" role="tablist" aria-label="Image carousel navigation">
+                        <button class="slider-indicator active" data-slide="0" role="tab" aria-selected="true"
+                            aria-controls="slide-0" aria-label="Go to slide 1 - Fresh produce display"></button>
+                        <button class="slider-indicator" data-slide="1" role="tab" aria-selected="false"
+                            aria-controls="slide-1" aria-label="Go to slide 2 - Local produce selection"></button>
+                        <button class="slider-indicator" data-slide="2" role="tab" aria-selected="false"
+                            aria-controls="slide-2" aria-label="Go to slide 3 - Community market atmosphere"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+        <div class="contact__container">
+            <h2 class="contact__title" id="contact-title">Get In Touch</h2>
+            <div class="contact__content">
+                <form class="contact__form" id="contactForm" novalidate>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name *</label>
+                        <input type="text" id="name" name="name" class="form-input" required
+                            aria-describedby="nameError" aria-invalid="false" autocomplete="name">
+                        <span class="form-error" id="nameError" role="alert" aria-live="polite"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email *</label>
+                        <input type="email" id="email" name="email" class="form-input" required
+                            aria-describedby="emailError" aria-invalid="false" autocomplete="email">
+                        <span class="form-error" id="emailError" role="alert" aria-live="polite"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message *</label>
+                        <textarea id="message" name="message" class="form-input form-textarea" rows="5" required
+                            aria-describedby="messageError" aria-invalid="false"></textarea>
+                        <span class="form-error" id="messageError" role="alert" aria-live="polite"></span>
+                    </div>
+                    <button type="submit" class="form-submit">Send Message</button>
+                    <div class="form-success" id="formSuccess" role="status" aria-live="polite"></div>
+                </form>
+                <div class="contact__info">
+                    <h3 class="contact__info-title">Visit Our Market</h3>
+                    <address class="contact__address">
+                        <p>Mogadishu | Somalia</p>
+                        <p>Phone: (+252) 610992288</p>
+                        <p>Email: info@hamiminimarket.com</p>
+                    </address>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__content">
+                <div class="footer__social">
+                    <h3 class="footer__social-title">Follow Us</h3>
+                    <ul class="footer__social-list">
+                        <li class="footer__social-item">
+                            <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer"
+                                aria-label="Follow us on Facebook">
+                                <svg class="footer__social-icon" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                </svg>
+                                <span class="footer__social-text">Facebook</span>
+                            </a>
+                        </li>
+                        <li class="footer__social-item">
+                            <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer"
+                                aria-label="Follow us on Instagram">
+                                <svg class="footer__social-icon" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                </svg>
+                                <span class="footer__social-text">Instagram</span>
+                            </a>
+                        </li>
+                        <li class="footer__social-item">
+                            <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer"
+                                aria-label="Follow us on Twitter">
+                                <svg class="footer__social-icon" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                                </svg>
+                                <span class="footer__social-text">Twitter</span>
+                            </a>
+                        </li>
+                        <li class="footer__social-item">
+                            <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer"
+                                aria-label="Follow us on LinkedIn">
+                                <svg class="footer__social-icon" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                </svg>
+                                <span class="footer__social-text">LinkedIn</span>
+                            </a>
+                        </li>
+                        <li class="footer__social-item">
+                            <a href="#" class="footer__social-link" target="_blank" rel="noopener noreferrer"
+                                aria-label="Subscribe to our YouTube channel">
+                                <svg class="footer__social-icon" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                                </svg>
+                                <span class="footer__social-text">YouTube</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__info">
+                    <p class="footer__copyright">&copy; 2025 Hami MiniMarket. All rights reserved.</p>
+                    <p class="footer__tagline">Fresh. Local. Trusted.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 19V5M5 12L12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
