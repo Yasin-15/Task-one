@@ -131,6 +131,6 @@ For questions about this project, please use the contact form on the website or 
 
 ---
 
-**Live Site**: [Add your deployment URL here]
+**Live Site**: [https://yasin-15.github.io/Task-one/]
 
 Built with ❤️ for the HamiSkills community
