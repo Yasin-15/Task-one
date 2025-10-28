@@ -34,14 +34,21 @@ function initializeNavigation() {
     // Handle navigation link clicks
     navLinks.forEach(link => {
         link.addEventListener('click', function (e) {
-            e.preventDefault();
-
             const targetId = this.getAttribute('href');
+            
+            // If it's an external link or different page, don't prevent default
+            if (targetId.startsWith('http') || targetId.includes('.html')) {
+                closeMobileMenu();
+                return;
+            }
+            
+            e.preventDefault();
             const targetSection = document.querySelector(targetId);
 
             if (targetSection) {
                 // Calculate offset for fixed header
-                const headerHeight = document.querySelector('.header').offsetHeight;
+                const header = document.querySelector('.header');
+                const headerHeight = header ? header.offsetHeight : 70;
                 const targetPosition = targetSection.offsetTop - headerHeight - 20;
 
                 window.scrollTo({
@@ -58,11 +65,13 @@ function initializeNavigation() {
         });
     });
 
-    // Handle scroll-based active link highlighting
-    window.addEventListener('scroll', debounce(updateActiveNavLinkOnScroll, 100));
-
-    // Set initial active link
-    updateActiveNavLinkOnScroll();
+    // Handle scroll-based active link highlighting (only if sections exist)
+    const pageSections = document.querySelectorAll('section[id]');
+    if (pageSections.length > 0) {
+        window.addEventListener('scroll', debounce(updateActiveNavLinkOnScroll, 100));
+        // Set initial active link
+        updateActiveNavLinkOnScroll();
+    }
 }
 
 /**
@@ -71,7 +80,11 @@ function initializeNavigation() {
 function updateActiveNavLinkOnScroll() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.header__nav-link');
-    const headerHeight = document.querySelector('.header').offsetHeight;
+    const header = document.querySelector('.header');
+    
+    if (!header || !sections.length || !navLinks.length) return;
+    
+    const headerHeight = header.offsetHeight;
     const scrollPosition = window.scrollY + headerHeight + 100;
 
     let currentSection = '';
@@ -971,81 +984,85 @@ function initializeEnhancedInteractions() {
     // Enhanced product card interactions
     const productCards = document.querySelectorAll('.product-card');
 
-    productCards.forEach(function (card) {
-        // Add subtle tilt effect on mouse move (desktop only)
-        if (window.innerWidth > 768) {
-            card.addEventListener('mousemove', function (e) {
-                const rect = this.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+    if (productCards.length > 0) {
+        productCards.forEach(function (card) {
+            // Add subtle tilt effect on mouse move (desktop only)
+            if (window.innerWidth > 768) {
+                card.addEventListener('mousemove', function (e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
 
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
 
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
 
-                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+                    this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.style.transform = '';
+                });
+            }
+
+            // Add click animation
+            card.addEventListener('click', function () {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
             });
-
-            card.addEventListener('mouseleave', function () {
-                this.style.transform = '';
-            });
-        }
-
-        // Add click animation
-        card.addEventListener('click', function () {
-            this.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                this.style.transform = '';
-            }, 150);
         });
-    });
+    }
 
     // Enhanced form interactions
     const formInputs = document.querySelectorAll('.form-input');
 
-    formInputs.forEach(function (input) {
-        // Add floating label effect
-        const label = input.previousElementSibling;
+    if (formInputs.length > 0) {
+        formInputs.forEach(function (input) {
+            // Add floating label effect
+            const label = input.previousElementSibling;
 
-        if (label && label.classList.contains('form-label')) {
-            // Check if input has value on load
-            if (input.value.trim() !== '') {
-                label.classList.add('floating');
+            if (label && label.classList.contains('form-label')) {
+                // Check if input has value on load
+                if (input.value.trim() !== '') {
+                    label.classList.add('floating');
+                }
+
+                input.addEventListener('focus', function () {
+                    label.classList.add('floating');
+                });
+
+                input.addEventListener('blur', function () {
+                    if (this.value.trim() === '') {
+                        label.classList.remove('floating');
+                    }
+                });
             }
 
-            input.addEventListener('focus', function () {
-                label.classList.add('floating');
+            // Add typing animation feedback
+            let typingTimer;
+            input.addEventListener('input', function () {
+                this.classList.add('typing');
+                clearTimeout(typingTimer);
+
+                typingTimer = setTimeout(() => {
+                    this.classList.remove('typing');
+                }, 500);
             });
-
-            input.addEventListener('blur', function () {
-                if (this.value.trim() === '') {
-                    label.classList.remove('floating');
-                }
-            });
-        }
-
-        // Add typing animation feedback
-        let typingTimer;
-        input.addEventListener('input', function () {
-            this.classList.add('typing');
-            clearTimeout(typingTimer);
-
-            typingTimer = setTimeout(() => {
-                this.classList.remove('typing');
-            }, 500);
         });
-    });
+    }
 
     // Enhanced navigation highlighting with smooth indicator
     const navLinks = document.querySelectorAll('.header__nav-link');
-    const navIndicator = document.createElement('div');
-    navIndicator.className = 'nav-indicator';
-
+    
     if (navLinks.length > 0) {
         const navList = navLinks[0].closest('.header__nav-list');
         if (navList) {
+            const navIndicator = document.createElement('div');
+            navIndicator.className = 'nav-indicator';
             navList.appendChild(navIndicator);
             updateNavIndicator();
         }
@@ -1086,11 +1103,14 @@ function updateNavIndicator() {
     const indicator = document.querySelector('.nav-indicator');
 
     if (activeLink && indicator) {
-        const linkRect = activeLink.getBoundingClientRect();
-        const navRect = activeLink.closest('.header__nav-list').getBoundingClientRect();
+        const navList = activeLink.closest('.header__nav-list');
+        if (navList) {
+            const linkRect = activeLink.getBoundingClientRect();
+            const navRect = navList.getBoundingClientRect();
 
-        indicator.style.left = `${linkRect.left - navRect.left}px`;
-        indicator.style.width = `${linkRect.width}px`;
+            indicator.style.left = `${linkRect.left - navRect.left}px`;
+            indicator.style.width = `${linkRect.width}px`;
+        }
     }
 }
 
@@ -1128,8 +1148,10 @@ function initializeScrollEffects() {
 
             lastScrollY = currentScrollY;
 
-            // Update navigation indicator
-            updateNavIndicator();
+            // Update navigation indicator (only if it exists)
+            if (document.querySelector('.nav-indicator')) {
+                updateNavIndicator();
+            }
         }, 16); // ~60fps
 
         window.addEventListener('scroll', handleScroll, { passive: true });
@@ -1148,30 +1170,38 @@ function initializeImageSlider() {
     const prevBtn = slider.querySelector('.slider-btn--prev');
     const nextBtn = slider.querySelector('.slider-btn--next');
 
+    // Return early if no slides found
+    if (!slides.length || !indicators.length) return;
+
     let currentSlide = 0;
     let slideInterval;
 
     // Function to show specific slide
     function showSlide(index) {
+        // Safety check for valid index
+        if (index < 0 || index >= slides.length) return;
+        
         // Remove active class from all slides and indicators
         slides.forEach(slide => slide.classList.remove('active'));
         indicators.forEach(indicator => indicator.classList.remove('active'));
 
         // Add active class to current slide and indicator
-        slides[index].classList.add('active');
-        indicators[index].classList.add('active');
+        if (slides[index]) slides[index].classList.add('active');
+        if (indicators[index]) indicators[index].classList.add('active');
 
         currentSlide = index;
     }
 
     // Function to go to next slide
     function nextSlide() {
+        if (slides.length === 0) return;
         const next = (currentSlide + 1) % slides.length;
         showSlide(next);
     }
 
     // Function to go to previous slide
     function prevSlide() {
+        if (slides.length === 0) return;
         const prev = (currentSlide - 1 + slides.length) % slides.length;
         showSlide(prev);
     }
