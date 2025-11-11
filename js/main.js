@@ -6,8 +6,6 @@
 
 // DOM Content Loaded Event Listener
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('Hami MiniMarket Landing Page Loaded');
-
     // Initialize all components
     initializeNavigation();
     initializeFormValidation();
@@ -828,9 +826,6 @@ function loadImage(img) {
         // Update alt text to indicate image loading failure
         const originalAlt = img.getAttribute('alt');
         img.setAttribute('alt', `${originalAlt} (Image currently unavailable)`);
-
-        // Log error for debugging
-        console.warn('Failed to load image:', src);
     };
 
     imageLoader.src = src;
@@ -1400,10 +1395,8 @@ function initializeSocialMediaEnhancements() {
             }, 600);
 
             // Track social media clicks (for analytics)
-            const platform = this.getAttribute('aria-label').split(' ')[3]; // Extract platform name
-            console.log(`Social media click: ${platform}`);
-
             // You can add analytics tracking here
+            // const platform = this.getAttribute('aria-label').split(' ')[3];
             // gtag('event', 'social_click', { platform: platform });
         });
 

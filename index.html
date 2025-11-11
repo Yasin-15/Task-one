@@ -53,6 +53,52 @@
                     <li class="header__nav-item">
                         <a href="#contact" class="header__nav-link">Contact</a>
                     </li>
+                    <li class="header__nav-item">
+                        <div class="cart-counter" id="cartCounter">
+                            <span class="cart-icon">🛒</span>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </div>
+                        <!-- Cart Modal -->
+                        <div class="cart-modal" id="cartModal">
+                            <div class="cart-modal__header">
+                                <h3 class="cart-modal__title">Shopping Cart</h3>
+                                <button class="cart-modal__close" id="cartModalClose" aria-label="Close cart">×</button>
+                            </div>
+                            <div class="cart-modal__content" id="cartModalContent">
+                                <div class="cart-empty" id="cartEmpty">
+                                    <p>Your cart is empty</p>
+                                    <span class="cart-empty-icon">🛒</span>
+                                </div>
+                                <div class="cart-items" id="cartItems">
+                                    <!-- Cart items will be dynamically added here -->
+                                </div>
+                            </div>
+                            <div class="cart-modal__footer" id="cartModalFooter">
+                                <div class="cart-summary" id="cartSummary">
+                                    <div class="cart-summary__row">
+                                        <span>Subtotal:</span>
+                                        <span>$<span id="cartSubtotal">0.00</span></span>
+                                    </div>
+                                    <div class="cart-summary__row" style="display: none;">
+                                        <span>Discount (10%):</span>
+                                        <span>-$<span id="cartDiscount">0.00</span></span>
+                                    </div>
+                                    <div class="cart-summary__row">
+                                        <span>Tax (5%):</span>
+                                        <span>$<span id="cartTax">0.00</span></span>
+                                    </div>
+                                    <div class="cart-summary__row cart-summary__total">
+                                        <span>Total:</span>
+                                        <span>$<span id="cartTotal">0.00</span></span>
+                                    </div>
+                                </div>
+                                <div class="cart-actions">
+                                    <button class="btn btn-secondary" id="cartContinueShopping">Continue Shopping</button>
+                                    <button class="btn btn-primary" id="cartCheckout">Checkout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
                 <button class="header__menu-toggle" aria-label="Toggle navigation menu">
                     <span class="header__menu-icon"></span>
@@ -435,7 +481,18 @@
         </svg>
     </button>
 
+    <script src="js/toast.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/cart.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        // Initialize cart module when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof CartModule !== 'undefined') {
+                CartModule.init();
+            }
+        });
+    </script>
 </body>
 
 </html>

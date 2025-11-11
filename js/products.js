@@ -933,25 +933,27 @@ window.removeCartItem = removeCartItem;
 
 /**
  * Performance monitoring
+ * Tracks page load time for optimization purposes
  */
 if ('performance' in window) {
     window.addEventListener('load', function () {
         const loadTime = performance.now();
-        console.log(`Product catalog loaded in ${loadTime.toFixed(2)}ms`);
+        // Performance metrics can be sent to analytics service here
     });
 }
 
 /**
  * Service Worker registration for offline functionality (optional)
+ * Uncomment when service worker is implemented
  */
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
-            });
-    });
-}
+// if ('serviceWorker' in navigator) {
+//     window.addEventListener('load', function () {
+//         navigator.serviceWorker.register('/sw.js')
+//             .then(registration => {
+//                 // Service worker registered successfully
+//             })
+//             .catch(registrationError => {
+//                 // Service worker registration failed
+//             });
+//     });
+// }

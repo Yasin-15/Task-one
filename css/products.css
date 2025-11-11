@@ -61,6 +61,8 @@
     cursor: pointer;
     transition: all var(--transition-fast);
     border: 2px solid transparent;
+    opacity: 0.5;
+    visibility: visible;
 }
 
 .cart-counter:hover {
@@ -98,6 +100,10 @@
     animation: pulse 0.3s ease-out;
 }
 
+.cart-count-pulse {
+    animation: cartCounterPulse 0.3s ease-out;
+}
+
 @keyframes pulse {
     0% {
         transform: scale(1);
@@ -107,6 +113,20 @@
         transform: scale(1.2);
     }
 
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes cartCounterPulse {
+    0% {
+        transform: scale(1);
+    }
+    
+    50% {
+        transform: scale(1.3);
+    }
+    
     100% {
         transform: scale(1);
     }
@@ -1101,4 +1121,578 @@
     outline: 3px solid var(--color-white);
     outline-offset: 2px;
     box-shadow: 0 0 0 6px var(--color-primary);
+}
+/* Car
+t Summary Styles */
+.cart-summary {
+    margin-bottom: var(--spacing-lg);
+}
+
+.cart-summary__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    font-size: var(--font-size-base);
+    color: var(--color-dark-gray);
+}
+
+.cart-summary__row:not(:last-child) {
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.cart-summary__total {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    padding-top: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+    border-top: 2px solid var(--color-primary-light);
+}
+
+.cart-item__line-total {
+    font-size: var(--font-size-sm);
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-top: var(--spacing-xs);
+}
+
+/* Toast Notification Styles */
+.toast-container {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    pointer-events: none;
+}
+
+.toast {
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-md) var(--spacing-lg);
+    min-width: 300px;
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    pointer-events: auto;
+    cursor: pointer;
+    transform: translateX(calc(100% + 40px));
+    opacity: 0;
+    transition: all var(--transition-normal);
+    border-left: 4px solid var(--color-primary);
+}
+
+.toast.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.toast.hiding {
+    transform: translateX(calc(100% + 40px));
+    opacity: 0;
+}
+
+.toast--success {
+    border-left-color: var(--color-primary);
+}
+
+.toast--error {
+    border-left-color: #d32f2f;
+}
+
+.toast--info {
+    border-left-color: var(--color-secondary);
+}
+
+.toast__icon {
+    font-size: var(--font-size-2xl);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+}
+
+.toast--success .toast__icon {
+    color: var(--color-primary);
+}
+
+.toast--error .toast__icon {
+    color: #d32f2f;
+}
+
+.toast--info .toast__icon {
+    color: var(--color-secondary);
+}
+
+.toast__content {
+    flex: 1;
+    min-width: 0;
+}
+
+.toast__message {
+    font-size: var(--font-size-base);
+    color: var(--color-dark-gray);
+    font-weight: 500;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.toast__close {
+    background: none;
+    border: none;
+    color: var(--color-gray);
+    cursor: pointer;
+    font-size: var(--font-size-xl);
+    padding: var(--spacing-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+}
+
+.toast__close:hover {
+    background-color: var(--color-light-gray);
+    color: var(--color-dark-gray);
+}
+
+/* Mobile Toast Styles */
+@media (max-width: 768px) {
+    .toast-container {
+        top: 80px;
+        right: 10px;
+        left: 10px;
+        align-items: stretch;
+    }
+    
+    .toast {
+        min-width: auto;
+        max-width: none;
+        width: 100%;
+    }
+}
+
+/* Reduced motion support for toasts */
+@media (prefers-reduced-motion: reduce) {
+    .toast {
+        transition: opacity var(--transition-fast);
+        transform: translateX(0);
+    }
+    
+    .toast.show {
+        opacity: 1;
+    }
+    
+    .toast.hiding {
+        opacity: 0;
+    }
+}
+
+/* ========================================
+   CART ANIMATIONS
+   ======================================== */
+
+/* Cart Item Fade-In Animation (when adding items) */
+@keyframes cartItemFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Cart Item Fade-Out and Slide-Up Animation (when removing items) */
+@keyframes cartItemFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        max-height: 200px;
+        margin-bottom: var(--spacing-md);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.9);
+        max-height: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+/* Quantity Change Animation */
+@keyframes quantityPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+        color: var(--color-secondary);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Cart Counter Scale Pulse Animation */
+@keyframes cartCounterScalePulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.4);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Cart Modal Slide-In Animation */
+@keyframes cartModalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Cart Modal Slide-Out Animation */
+@keyframes cartModalSlideOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Backdrop Fade-In Animation */
+@keyframes backdropFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Backdrop Fade-Out Animation */
+@keyframes backdropFadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Apply animations to cart items */
+.cart-item {
+    animation: cartItemFadeIn 0.3s ease-out;
+}
+
+.cart-item.removing {
+    animation: cartItemFadeOut 0.3s ease-out forwards;
+    overflow: hidden;
+}
+
+/* Quantity number animation */
+.cart-item__qty-number.updating {
+    animation: quantityPulse 0.3s ease-out;
+}
+
+/* Cart counter animation */
+.cart-count.pulse-animation {
+    animation: cartCounterScalePulse 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Cart modal animations */
+.cart-modal.show {
+    animation: cartModalSlideIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.cart-modal.hiding {
+    animation: cartModalSlideOut 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Backdrop animations */
+.cart-modal-backdrop.show {
+    animation: backdropFadeIn 0.3s ease-out;
+}
+
+.cart-modal-backdrop.hiding {
+    animation: backdropFadeOut 0.3s ease-out;
+}
+
+/* Mobile cart modal slide-up animation */
+@media (max-width: 768px) {
+    @keyframes cartModalSlideInMobile {
+        from {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes cartModalSlideOutMobile {
+        from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+    }
+    
+    .cart-modal.show {
+        animation: cartModalSlideInMobile 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .cart-modal.hiding {
+        animation: cartModalSlideOutMobile 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+}
+
+/* Smooth transitions for all cart UI changes */
+.cart-item__details,
+.cart-item__controls,
+.cart-summary__row,
+.cart-total {
+    transition: all 0.2s ease-out;
+}
+
+/* Line total update animation */
+.cart-item__line-total {
+    transition: color 0.2s ease-out;
+}
+
+.cart-item__line-total.updating {
+    color: var(--color-secondary);
+    font-weight: 700;
+}
+
+/* Cart summary values animation */
+.cart-summary__row span:last-child {
+    transition: all 0.2s ease-out;
+}
+
+.cart-summary__row span:last-child.updating {
+    color: var(--color-secondary);
+    font-weight: 700;
+}
+
+/* Empty cart state animation */
+.cart-empty {
+    animation: cartItemFadeIn 0.4s ease-out;
+}
+
+/* Reduced motion support for cart animations */
+@media (prefers-reduced-motion: reduce) {
+    .cart-item,
+    .cart-item.removing,
+    .cart-item__qty-number.updating,
+    .cart-count.pulse-animation,
+    .cart-modal.show,
+    .cart-modal.hiding,
+    .cart-modal-backdrop.show,
+    .cart-modal-backdrop.hiding,
+    .cart-empty {
+        animation: none !important;
+    }
+    
+    .cart-item__details,
+    .cart-item__controls,
+    .cart-summary__row,
+    .cart-total,
+    .cart-item__line-total {
+        transition: none !important;
+    }
+}
+
+/* Cart Summary Additional Styles */
+.cart-summary {
+    margin-bottom: var(--spacing-md);
+}
+
+#cartSummary {
+    margin-bottom: var(--spacing-lg);
+}
+
+.cart-summary__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    font-size: var(--font-size-base);
+    color: var(--color-dark-gray);
+}
+
+.cart-summary__row:not(:last-child) {
+    border-bottom: 1px solid var(--color-light-gray);
+}
+
+.cart-summary__total {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    padding-top: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+    border-top: 2px solid var(--color-primary-light);
+}
+
+.cart-summary__row span:first-child {
+    font-weight: 500;
+}
+
+.cart-summary__row span:last-child {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.cart-summary__total span:last-child {
+    color: var(--color-primary);
+    font-size: var(--font-size-2xl);
+}
+
+/* Discount Row Styles */
+.cart-summary__discount {
+    color: var(--color-secondary);
+}
+
+.cart-summary__discount span:first-child {
+    color: var(--color-secondary);
+    font-weight: 600;
+}
+
+.cart-summary__discount span:last-child {
+    color: var(--color-secondary);
+    font-weight: 700;
+}
+
+/* Discount Message Styles */
+.cart-discount-message {
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-dark));
+    color: var(--color-white);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+    animation: slideInFromTop 0.4s ease-out;
+}
+
+.cart-discount-message .discount-icon {
+    font-size: var(--font-size-2xl);
+    flex-shrink: 0;
+}
+
+.cart-discount-message .discount-text {
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.cart-discount-message strong {
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+}
+
+/* Discount Eligibility Message Styles */
+.cart-discount-eligibility {
+    background-color: rgba(46, 125, 50, 0.1);
+    border-left: 3px solid var(--color-primary);
+    color: var(--color-dark-gray);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    animation: slideInFromTop 0.4s ease-out;
+}
+
+.cart-discount-eligibility .info-icon {
+    font-size: var(--font-size-xl);
+    flex-shrink: 0;
+    color: var(--color-primary);
+}
+
+.cart-discount-eligibility .eligibility-text {
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--color-dark-gray);
+}
+
+.cart-discount-eligibility strong {
+    font-weight: 700;
+    color: var(--color-primary);
+    font-size: var(--font-size-lg);
+}
+
+/* Slide-in animation for discount messages */
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile responsive styles for discount messages */
+@media (max-width: 768px) {
+    .cart-discount-message,
+    .cart-discount-eligibility {
+        padding: var(--spacing-sm);
+        font-size: var(--font-size-sm);
+    }
+    
+    .cart-discount-message .discount-icon,
+    .cart-discount-eligibility .info-icon {
+        font-size: var(--font-size-lg);
+    }
+    
+    .cart-discount-message .discount-text,
+    .cart-discount-eligibility .eligibility-text {
+        font-size: var(--font-size-sm);
+    }
+    
+    .cart-discount-message strong,
+    .cart-discount-eligibility strong {
+        font-size: var(--font-size-base);
+    }
+}
+
+/* Reduced motion support for discount messages */
+@media (prefers-reduced-motion: reduce) {
+    .cart-discount-message,
+    .cart-discount-eligibility {
+        animation: none;
+    }
 }

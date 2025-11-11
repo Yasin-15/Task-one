@@ -76,9 +76,31 @@
                                 </div>
                             </div>
                             <div class="cart-modal__footer" id="cartModalFooter">
-                                <div class="cart-total">
-                                    <span class="cart-total__label">Total: </span>
-                                    <span class="cart-total__amount" id="cartTotal">$0.00</span>
+                                <div class="cart-summary">
+                                    <div class="cart-summary__row">
+                                        <span>Subtotal:</span>
+                                        <span id="cartSubtotal">$0.00</span>
+                                    </div>
+                                    <div class="cart-summary__row cart-summary__discount" id="cartDiscountRow" style="display: none;">
+                                        <span>Discount (10%):</span>
+                                        <span id="cartDiscount">-$0.00</span>
+                                    </div>
+                                    <div class="cart-summary__row">
+                                        <span>Tax (5%):</span>
+                                        <span id="cartTax">$0.00</span>
+                                    </div>
+                                    <div class="cart-summary__row cart-summary__total">
+                                        <span>Total:</span>
+                                        <span id="cartTotal">$0.00</span>
+                                    </div>
+                                </div>
+                                <div class="cart-discount-message" id="cartDiscountMessage" style="display: none;">
+                                    <span class="discount-icon">🎉</span>
+                                    <span class="discount-text">You saved <strong id="cartDiscountAmount">$0.00</strong> with your discount!</span>
+                                </div>
+                                <div class="cart-discount-eligibility" id="cartDiscountEligibility" style="display: none;">
+                                    <span class="info-icon">ℹ️</span>
+                                    <span class="eligibility-text">Add <strong id="cartAmountToDiscount">$0.00</strong> more to get 10% off!</span>
                                 </div>
                                 <div class="cart-actions">
                                     <button class="btn btn-secondary" id="cartContinueShopping">Continue Shopping</button>
@@ -222,8 +244,22 @@
         </svg>
     </button>
 
+    <script src="js/toast.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/product.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/products.js"></script>
+    <script>
+        // Initialize modules when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof CartModule !== 'undefined') {
+                CartModule.init();
+            }
+            if (typeof ProductModule !== 'undefined') {
+                ProductModule.init();
+            }
+        });
+    </script>
 </body>
 
 </html>
